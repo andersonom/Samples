@@ -31,3 +31,5 @@ dotnet/core/1.0.4/AllianceReservations/src/obj/
 dotnet/core/1.0.4/AllianceReservations/src/bin/
 dotnet/core/1.0.4/AllianceReservations/test/bin/
 dotnet/core/1.0.4/AllianceReservations/test/obj/
+dotnet/core/1.0.4/AllianceReservations/src/AllianceReservations.Console/bin/
+dotnet/core/1.0.4/AllianceReservations/src/AllianceReservations.Console/obj/

@@ -8,7 +8,7 @@ namespace AllianceReservations.Data
 {
     public class Crud<T> where T : class
     {
-        private static readonly IFileHandler<T> _fileHandler = new SqlLiteHandler<T>();
+        private static readonly IFileHandler<T> _fileHandler = new XmlHandler<T>();
 
         public Guid? Id { get; set; }
 

@@ -8,6 +8,11 @@
         <OutputTypeEx>library</OutputTypeEx>
         <StartupObject />
   </PropertyGroup>
+  <ItemGroup>
+    <Compile Remove="AllianceReservations.Console\**" />
+    <EmbeddedResource Remove="AllianceReservations.Console\**" />
+    <None Remove="AllianceReservations.Console\**" />
+  </ItemGroup>
   <ItemGroup>    
   <PackageReference Include="Newtonsoft.Json" Version="10.0.3" />
   <PackageReference Include="System.Xml.XmlSerializer" Version="4.3.0" />

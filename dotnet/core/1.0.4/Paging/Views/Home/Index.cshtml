@@ -1,0 +1,32 @@
+
+@model PaginatedList<Paging.Models.Pagination>
+
+@{
+    var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+}
+
+<div clas="row">
+  <div class="col-md-12">
+    <p>
+@foreach(var item in Model){
+
+  <p> @item.Item </p>
+}
+</p>
+</div>
+</div>
+<div clas="row">
+<div class="col-md-12">
+<a asp-action="Index"   
+   asp-route-page="@(Model.PageIndex - 1)"   
+   class="btn btn-default @prevDisabled">
+    Previous
+</a>
+<a asp-action="Index"   
+   asp-route-page="@(Model.PageIndex + 1)"   
+   class="btn btn-default @nextDisabled">
+    Next
+</a>
+</div>
+</div>

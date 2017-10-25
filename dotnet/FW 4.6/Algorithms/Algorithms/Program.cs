@@ -12,7 +12,7 @@ namespace Algorithms
         static void Main(string[] args)
         {
             //1
-            Algorithms.IsEven(new int[] { 5, 10, 20, 33, 47, 54, 69, 73, 84, 96, 113 });
+            //Algorithms.IsEven(new int[] { 5, 10, 20, 33, 47, 54, 69, 73, 84, 96, 113 });
 
             ////9
             //Console.WriteLine(AllNumbersConcatString(new int[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 }));
@@ -22,7 +22,7 @@ namespace Algorithms
             //if (result != null) { Console.WriteLine(result[0]); Console.WriteLine(result[1]); }
 
             //15
-            new Thread(Algorithms.ThreadSafe).Start();
+            //new Thread(Algorithms.ThreadSafe).Start();
             //OR
             //var thread = new Thread(ThreadNonSafe);
             //thread.Start();
@@ -40,6 +40,9 @@ namespace Algorithms
 
             //var ter = TernarySearch(c, 0, c.Length - 1, 13);
             //Console.WriteLine(ter);
+
+
+            HackerRankSearchAlgorithms.BubbleSort(new int[] { 7, 4, 5, 2 }, 4);
 
             Console.ReadKey();
         }

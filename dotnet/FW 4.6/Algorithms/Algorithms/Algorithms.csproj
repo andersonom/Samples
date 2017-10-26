@@ -44,10 +44,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Algorithms.cs" />
+    <Compile Include="AvenueCodeTest.cs" />
+    <Compile Include="Client.cs" />
     <Compile Include="CodeBattle.cs" />
     <Compile Include="FarfetchTest.cs" />
     <Compile Include="HackerRank.cs" />
     <Compile Include="HackerRankSearchAlgorithms.cs" />
+    <Compile Include="LittleShino.cs" />
+    <Compile Include="Other.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RDITest.cs" />

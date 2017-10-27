@@ -284,8 +284,12 @@ namespace Algorithms
                 return "No Date";
 
         }
-
-        public static void BubbleSort(int[] A, int n)
+        /// <summary>
+        /// https://www.hackerearth.com/pt-br/practice/algorithms/sorting/bubble-sort/tutorial/
+        /// </summary>
+        /// <param name="A">Array</param>
+        /// <param name="n">Size</param>
+        public static void BubbleSort(ref int[] A, int n)
         {
             int temp;
             for (int k = 0; k < n - 1; k++)

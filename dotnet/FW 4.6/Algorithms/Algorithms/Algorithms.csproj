@@ -47,6 +47,7 @@
     <Compile Include="AvenueCodeTest.cs" />
     <Compile Include="Client.cs" />
     <Compile Include="CodeBattle.cs" />
+    <Compile Include="Codility.cs" />
     <Compile Include="FarfetchTest.cs" />
     <Compile Include="HackerRank.cs" />
     <Compile Include="HackerRankSearchAlgorithms.cs" />

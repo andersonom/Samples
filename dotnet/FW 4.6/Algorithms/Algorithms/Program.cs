@@ -41,9 +41,12 @@ namespace Algorithms
             //var ter = TernarySearch(c, 0, c.Length - 1, 13);
             //Console.WriteLine(ter);
 
+            //var A = new int[] { 7, 4, 5, 2 };
+            //HackerRankSearchAlgorithms.BubbleSort(ref A, A.Length);
 
-            HackerRankSearchAlgorithms.BubbleSort(new int[] { 7, 4, 5, 2 }, 4);
-
+            var solution = new Solution();
+            var test = solution.solution2(new int[] { 1, 2, 3});
+           var test2=  solution.solution2(new int[] { 1, 3, 6, 4, 1, 2 });
             Console.ReadKey();
         }
 

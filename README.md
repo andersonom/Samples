@@ -11,4 +11,8 @@ ChangeRequestCreator<br/>
 SimpleLogin</p>
 
 <p><b>FrameWork 3.5:</b><br/>
+DependecyInjectionTest<br/>
+MVPSampleBLL<br/>
+StringBuilderPerformance<br/>
+WindowsServiceThread<br/>
 DualListExample</p>

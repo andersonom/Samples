@@ -44,9 +44,17 @@ namespace Algorithms
             //var A = new int[] { 7, 4, 5, 2 };
             //HackerRankSearchAlgorithms.BubbleSort(ref A, A.Length);
 
-            var solution = new Solution();
-            var test = solution.solution2(new int[] { 1, 2, 3});
-           var test2=  solution.solution2(new int[] { 1, 3, 6, 4, 1, 2 });
+            //var solution = new Solution();
+            //var test = solution.solution2(new int[] { 1, 2, 3});
+           //var test2=  solution.solution2(new int[] { 1, 3, 6, 4, 1, 2 });
+            
+
+            //var solution = new SolutionParking();
+            //var test = solution.solution("09:43", "11:42");
+            //var test2 = solution.solution("10:00", "12:00");
+
+            var solution = new SolutionBestArrayDivision();
+            var test = solution.solution(new int[] {1,3,-3 });
             Console.ReadKey();
         }
 

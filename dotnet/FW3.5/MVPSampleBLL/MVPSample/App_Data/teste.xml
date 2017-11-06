@@ -1,0 +1,25 @@
+<?xml version="1.0" standalone="yes"?>
+<menu>
+  <food>
+    <name>Belgian Waffles</name>
+    <price>$5.95</price>
+    <description>two of our
+     famous Belgian
+
+    Waffles with plenty of real
+    maple syrup</description>
+    <calories>650</calories>
+  </food>
+  <food>
+    <name>Feijoada</name>
+    <price>$10.99</price>
+    <description>Brazillian Typical Food</description>
+    <calories>1200</calories>
+  </food>
+  <food>
+    <name>Mocotó</name>
+    <price>$12.99</price>
+    <description>Brazillian Typical Food</description>
+    <calories>1100</calories>
+  </food>
+</menu>

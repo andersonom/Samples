@@ -8,7 +8,8 @@ Train</p>
 <p><b>FrameWork 4.6:</b><br/>
 Algorithms<br/>
 ChangeRequestCreator<br/>
-SimpleLogin</p>
+SimpleLogin</br>
+ParallelProgramming</p>
 
 <p><b>FrameWork 3.5:</b><br/>
 DependecyInjectionTest<br/>

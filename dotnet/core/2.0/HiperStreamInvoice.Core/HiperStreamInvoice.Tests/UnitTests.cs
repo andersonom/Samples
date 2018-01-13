@@ -14,9 +14,9 @@ namespace HiperStreamInvoice.Tests
         [Fact]
         public void TestQutd()
         {
-           int regsLidos = _invoice.Process(@"..\..\..\..\HiperStreamInvoice.Core\Baseficticia.txt");
+           int regsRead = _invoice.Process(@"..\..\..\..\HiperStreamInvoice.Core\Baseficticia.txt");
 
-            Assert.Equal(5000, regsLidos);
+            Assert.Equal(5000, regsRead);
         }
     }
 }

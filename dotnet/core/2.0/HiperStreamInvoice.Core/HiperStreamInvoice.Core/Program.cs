@@ -6,8 +6,6 @@ using FluentValidation.Results;
 using System.Text;
 using System.Diagnostics;
 using System.Globalization;
-using System.Threading.Tasks;
-using System.Threading;
 
 namespace HiperStreamInvoice.Core
 {
@@ -16,7 +14,7 @@ namespace HiperStreamInvoice.Core
         static void Main(string[] args)
         {
             IInvoice _invoice;
-            _invoice = new Invoice(); //Poderia usar a injeção automática do .net core ou ninject
+            _invoice = new Invoice();
             _invoice.Process(@"Baseficticia.txt");
         }
     }
@@ -29,8 +27,6 @@ namespace HiperStreamInvoice.Core
     public interface IFileWriter<T> where T : class
     {
         void WriteFiles(List<T> list, string fileName);
-        void WriteException(string line, Exception ex);
-        void WriteErrors(string line, ValidationResult results);
     }
 
     public class CSVWriter : IFileWriter<Invoice>
@@ -41,51 +37,31 @@ namespace HiperStreamInvoice.Core
 
             for (int x = 0; x < list.Count; x++)
             {
-                sb.AppendFormat("{0};{1};{2};{3}", list[x].NomeCliente, list[x].RuaComComplemento, list[x].ValorFatura, list[x].NumeroPaginas).AppendLine();
+                sb.AppendFormat("{0};{1};{2};{3}", list[x].ClientName, list[x].Street, list[x].InvoiceValue, list[x].PageQutd).AppendLine();
             }
 
             var filePath = (Environment.GetFolderPath(Environment.SpecialFolder.Desktop));
 
             File.WriteAllText(String.Format("{0}//{1}", filePath, fileName), sb.ToString());
         }
-
-        public void WriteException(string line, Exception ex)//Poderia estar em outra classe
-        {
-            Console.WriteLine(line);
-            Console.WriteLine(ex.Message);
-            Console.WriteLine(ex.InnerException.Message);
-            Console.WriteLine(ex.StackTrace);
-            Console.WriteLine(string.Empty);
-        }
-
-        public void WriteErrors(string line, ValidationResult results)//Poderia estar em outra classe
-        {
-            foreach (var item in results.Errors)
-            {
-                Console.WriteLine(String.Format("Linha inválida: {0}", line));
-                Console.WriteLine(String.Format("Mensagem: {0}", item.ErrorMessage));
-                Console.WriteLine(string.Empty);
-            }
-        }
     }
 
     public class Invoice : IInvoice
     {
-        public String NomeCliente { get; set; }
-        public String CEP { get; set; }
-        public String RuaComComplemento { get; set; }
-        public String Bairro { get; set; }
-        public String Cidade { get; set; }
-        public String Estado { get; set; }
-        public String ValorFatura;
-
-        public int NumeroPaginas { get; set; }
+        public String ClientName { get; set; }
+        public String PostalCode { get; set; }
+        public String Street { get; set; }
+        public String District { get; set; }
+        public String City { get; set; }
+        public String State { get; set; }
+        public String InvoiceValue { get; set; }
+        public int PageQutd { get; set; }
 
         IFileWriter<Invoice> _fileWriter;
 
         public Invoice()
         {
-            _fileWriter = new CSVWriter();//Poderia usar a injeção automática do .net core ou ninject
+            _fileWriter = new CSVWriter();
         }
 
         public int Process(string fileName)
@@ -93,11 +69,11 @@ namespace HiperStreamInvoice.Core
             Stopwatch sw = new Stopwatch();
             sw.Start();
 
-            string line = string.Empty;
+            string description = string.Empty;
             int errorCount = 0;
             Invoice inv;
             InvoiceValidator validator = new InvoiceValidator();
-
+            
             List<Invoice> listZeroInvoiceValue = new List<Invoice>();
             List<Invoice> listSmall = new List<Invoice>();
             List<Invoice> listMed = new List<Invoice>();
@@ -107,22 +83,22 @@ namespace HiperStreamInvoice.Core
             {
                 string headerLine = reader.ReadLine();//skip header
 
-                while ((line = reader.ReadLine()) != null)
+                while ((description = reader.ReadLine()) != null)
                 {
                     try
                     {
-                        string[] values = line.Split(';');
+                        string[] values = description.Split(';');
 
                         inv = new Invoice
                         {
-                            NomeCliente = values[0].Trim(),
-                            CEP = values[1].Trim(),
-                            RuaComComplemento = values[2].Trim(),
-                            Bairro = values[3].Trim(),
-                            Cidade = values[4].Trim(),
-                            Estado = values[5].Trim(),
-                            ValorFatura = values[6].Trim(),
-                            NumeroPaginas = Convert.ToInt32(values[7].Trim())
+                            ClientName = values[0].Trim(),
+                            PostalCode = values[1].Trim(),
+                            Street = values[2].Trim(),
+                            District = values[3].Trim(),
+                            City = values[4].Trim(),
+                            State = values[5].Trim(),
+                            InvoiceValue = values[6].Trim(),
+                            PageQutd = Convert.ToInt32(values[7].Trim())
                         };
 
                         ValidationResult results = validator.Validate(inv);
@@ -130,25 +106,25 @@ namespace HiperStreamInvoice.Core
 
                         if (validationSucceeded)
                         {
-                            inv.NumeroPaginas = validator.ForceEvenNumber(inv.NumeroPaginas);
-                            if (Decimal.Parse(inv.ValorFatura, CultureInfo.InvariantCulture) <= 0)
+                            inv.PageQutd = validator.ForceEvenNumber(inv.PageQutd);
+                            if (Decimal.Parse(inv.InvoiceValue, CultureInfo.InvariantCulture) <= 0)
                                 listZeroInvoiceValue.Add(inv);
-                            else if (inv.NumeroPaginas < 7)
+                            else if (inv.PageQutd < 7)
                                 listSmall.Add(inv);
-                            else if (inv.NumeroPaginas < 13)
+                            else if (inv.PageQutd < 13)
                                 listMed.Add(inv);
-                            else if (inv.NumeroPaginas > 12)
+                            else if (inv.PageQutd > 12)
                                 listBig.Add(inv);
                         }
                         else
                         {
-                            _fileWriter.WriteErrors(line, results);
+                            ConsoleUtility.WriteErrors(description, results);
                             errorCount++;
                         }
                     }
                     catch (Exception ex)
                     {
-                        _fileWriter.WriteException(line, ex);
+                        ConsoleUtility.WriteException(description, ex);
                     }
                 }
             }
@@ -171,26 +147,38 @@ namespace HiperStreamInvoice.Core
 
     public class InvoiceValidator : AbstractValidator<Invoice>
     {
+        string _countryCode;
+        public InvoiceValidator(string countryCode = "BR")
+        {
+            string _countryCode = countryCode;
+        }        
+
         public InvoiceValidator()
         {
-            RuleFor(invoice => invoice.NomeCliente).NotEmpty().WithMessage("Nome vazio"); ;
-            RuleFor(invoice => invoice.CEP).Must(BeAValidCep).WithMessage("Cep Inválido");
-            RuleFor(invoice => invoice.RuaComComplemento).Length(5, 250).WithMessage("RuaComComplemento deve ser maior que 5 e menor que 250"); ;
-            RuleFor(invoice => invoice.Bairro).NotEmpty().WithMessage("Bairro vazio");
-            RuleFor(invoice => invoice.Cidade).NotEmpty().WithMessage("Cidade vazia");
-            RuleFor(invoice => invoice.Estado).NotEmpty().WithMessage("Estado vazio");
-            RuleFor(invoice => invoice.NumeroPaginas).NotEqual(0);
+            RuleFor(invoice => invoice.ClientName).NotEmpty().WithMessage("Nome vazio"); ;
+            RuleFor(invoice => invoice.PostalCode).Must(BeAValidPostalCode).WithMessage("Cep Inválido");
+            RuleFor(invoice => invoice.Street).Length(5, 250).WithMessage("RuaComComplemento deve ser maior que 5 e menor que 250"); ;
+            RuleFor(invoice => invoice.District).NotEmpty().WithMessage("Bairro vazio");
+            RuleFor(invoice => invoice.City).NotEmpty().WithMessage("Cidade vazia");
+            RuleFor(invoice => invoice.State).NotEmpty().WithMessage("Estado vazio");
+            RuleFor(invoice => invoice.PageQutd).NotEqual(0);
         }
 
-        private bool BeAValidCep(string cep)
-        {
-            if (cep.Length == 8)
-                cep = cep.Substring(0, 5) + "-" + cep.Substring(5, 3);
+        private bool BeAValidPostalCode(string postalCode)
+        {             
+            if (_countryCode == "BR")
+            {
+                if (postalCode.Length == 8)
+                    postalCode = postalCode.Substring(0, 5) + "-" + postalCode.Substring(5, 3);
 
-            if (cep == "00000-000" || cep == "99999-999")
-                return false;
+                if (postalCode == "00000-000" || postalCode == "99999-999")
+                    return false;
+                else
+                    return System.Text.RegularExpressions.Regex.IsMatch(postalCode, ("[0-9]{5}-[0-9]{3}"));
+            }
             else
-                return System.Text.RegularExpressions.Regex.IsMatch(cep, ("[0-9]{5}-[0-9]{3}"));
+                throw new Exception("Country Postal Code validation not yet implemented!");
+
         }
 
         public int ForceEvenNumber(int page)
@@ -199,6 +187,28 @@ namespace HiperStreamInvoice.Core
                 return page + 1;
             else
                 return page;
+        }
+    }
+
+    public static class ConsoleUtility
+    {
+        public static void WriteException(string description, Exception ex)
+        {
+            Console.WriteLine(description);
+            Console.WriteLine(ex.Message);
+            Console.WriteLine(ex.InnerException.Message);
+            Console.WriteLine(ex.StackTrace);
+            Console.WriteLine(string.Empty);
+        }
+
+        public static void WriteErrors(string description, ValidationResult results)
+        {
+            foreach (var item in results.Errors)
+            {
+                Console.WriteLine(String.Format("Linha inválida: {0}", description));
+                Console.WriteLine(String.Format("Mensagem: {0}", item.ErrorMessage));
+                Console.WriteLine(string.Empty);
+            }
         }
     }
 }

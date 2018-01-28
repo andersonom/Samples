@@ -1,8 +1,8 @@
 # My Samples
 
 <p><b>.Net Core 2.0:</b><br/> 
-HiperStreamInvoice Test</p>
-
+HiperStreamInvoice Test<br/>
+AgileContent Test</p>
 <p><b>.Net Core 1.0.4:</b><br/>
 AllianceReservations<br/>
 Paging<br/>

@@ -2,6 +2,7 @@
 
 <p><b>.Net Core 2.0:</b><br/> 
 HiperStreamInvoice Test<br/>
+Student Management<br/>
 AgileContent Test</p>
 <p><b>.Net Core 1.0.4:</b><br/>
 AllianceReservations<br/>

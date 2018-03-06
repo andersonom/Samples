@@ -1,6 +1,5 @@
 ﻿using StudentsManager.Domain.Models;
-using System.Collections.Generic;
-using System.Linq;
+using StudentsManager.Domain.Bases;
 using System.Threading.Tasks;
 
 namespace StudentManager.Domain.Interfaces.Repositories

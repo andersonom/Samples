@@ -7,7 +7,8 @@ using Newtonsoft.Json.Converters;
 using StudentManager.Domain.Interfaces.Repositories;
 using StudentsManager.Data;
 using StudentsManager.Data.Repositories;
-
+using System;
+using System.IO;
 
 namespace StudentsManager.Api
 {
@@ -28,7 +29,7 @@ namespace StudentsManager.Api
             services.AddScoped<IAddressRepository, AddressRepository>();
 
             services.AddTransient<DbInitializer>();
-
+           
             services.AddDbContext<StudentsManagerContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("StudentsManagerContext")));
 
@@ -40,14 +41,14 @@ namespace StudentsManager.Api
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, StudentsManagerContext context,
             DbInitializer dbInitializer)
-        {
+        { 
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
 
             app.UseMvc();
-
+           
             dbInitializer.Initialize(context).Wait();
         }
     }

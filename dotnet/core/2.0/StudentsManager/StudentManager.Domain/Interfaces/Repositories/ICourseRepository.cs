@@ -1,4 +1,5 @@
 ﻿using StudentsManager.Domain.Models;
+using StudentsManager.Domain.Bases;
 using System;
 using System.Collections.Generic;
 using System.Text;

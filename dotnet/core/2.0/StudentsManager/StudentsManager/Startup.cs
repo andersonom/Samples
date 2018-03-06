@@ -2,10 +2,11 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using StudentManager.Domain.Interfaces.Client;
+using StudentManager.Domain.Interfaces.Services;
 using StudentsManager.Domain.Models;
 using System.Net.Http;
 using Microsoft.EntityFrameworkCore;
+using StudentsManager.UI.Services;
 
 namespace StudentsManager.UI
 {

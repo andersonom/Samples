@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using StudentManager.Domain.Interfaces.Client;
+using StudentManager.Domain.Interfaces.Services;
 using StudentsManager.Domain.Models;
 using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;

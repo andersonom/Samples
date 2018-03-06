@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
+﻿using System.Collections.Generic; 
+using System.Threading.Tasks; 
 using Microsoft.AspNetCore.Mvc;
-using StudentManager.Domain.Interfaces.Repositories;
-using StudentsManager.Data.Repositories;
+using StudentManager.Domain.Interfaces.Repositories; 
+using StudentsManager.Domain.Bases;
 using StudentsManager.Domain.Models;
 
 namespace StudentsManager.Api.Controllers

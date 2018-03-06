@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using StudentManager.Domain.Interfaces.Repositories;
 using StudentsManager.Domain.Models;
+using StudentsManager.Domain.Bases;
 
 namespace StudentsManager.Api.Controllers
 {

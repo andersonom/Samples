@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System; 
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
@@ -7,8 +6,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore; 
 using Newtonsoft.Json;
-using StudentManager.Domain.Interfaces.Client;
+using StudentManager.Domain.Interfaces.Services;
 using StudentsManager.Domain.Models;
+using StudentsManager.Domain.Bases;
 
 namespace StudentsManager.UI.Controllers
 {

@@ -1,4 +1,3 @@
-using StudentsManager.Domain.Models;
 using System.Collections.Generic;
 
 namespace StudentsManager.Domain.Models

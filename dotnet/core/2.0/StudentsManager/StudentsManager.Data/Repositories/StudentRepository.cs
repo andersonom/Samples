@@ -1,9 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using StudentManager.Domain.Interfaces.Repositories;
 using StudentsManager.Domain.Models;
-using System.Collections.Generic;
+using StudentsManager.Domain.Bases;
 using System.Linq;
 using System.Threading.Tasks;
+
 
 namespace StudentsManager.Data.Repositories
 {

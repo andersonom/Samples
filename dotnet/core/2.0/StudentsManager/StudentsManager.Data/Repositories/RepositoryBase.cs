@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using StudentManager.Domain.Interfaces.Repositories;
 using Microsoft.EntityFrameworkCore;
 using System.Threading.Tasks;
-using StudentsManager.Domain.Models;
+using StudentsManager.Domain.Bases;
 
 namespace StudentsManager.Data.Repositories
 {

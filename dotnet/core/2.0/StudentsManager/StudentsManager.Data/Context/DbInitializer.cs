@@ -1,4 +1,5 @@
 ﻿using StudentsManager.Domain.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -8,7 +9,7 @@ namespace StudentsManager.Data
     public class DbInitializer
     {
         public async Task Initialize(StudentsManagerContext context)
-        {
+        { 
             context.Database.EnsureCreated();
 
             if (context.Student.Any())

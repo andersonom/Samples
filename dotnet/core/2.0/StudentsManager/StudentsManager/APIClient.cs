@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
-using StudentManager.Domain.Interfaces.Client;
-using StudentsManager.Domain.Models;
+using StudentManager.Domain.Interfaces.Services;
+using StudentsManager.Domain.Bases;
 using System;
 using System.Collections.Generic;
 using System.Net;

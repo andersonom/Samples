@@ -1,5 +1,6 @@
 # My Samples
 <p><b>.Net Core 2.2:</b><br/> 
+api-graphQl <br/> 
 HealthCheck <p/>
 <p><b>.Net Core 2.0:</b><br/> 
 HiperStreamInvoice <br/>
